@@ -5,8 +5,7 @@ function singl($login = NULL,$password = NULL)
 		$connect = mysqli_connect(HOST,USER,PASS,DB) or die('Нехочет');
 		$sql_request_login = "SELECT * FROM `users` WHERE login = '$login'";
 		$query_login = mysqli_query($connect,$sql_request_login);
-		$errors = []; 
-		if ($query_login) {
+		if ($query_login->num_rows != 0) {
 			$array = mysqli_fetch_array($query_login);
 				if (password_verify($password, $array['password'])) {
 					mysqli_close($connect);
@@ -14,12 +13,12 @@ function singl($login = NULL,$password = NULL)
 					header("Location: singl.php");
 					return $_SESSION['logged_user'] = $login;
 				}else {
+					echo "Неверный пароль";
 					mysqli_close($connect);
-					$errors = "Неверный пароль";
 				}
 		}else {
+			echo "Неверный логин";
 			mysqli_close($connect);
-			$errors = "Неверный логин";
 		}
 	
 }
