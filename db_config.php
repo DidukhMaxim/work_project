@@ -2,7 +2,7 @@
 define('HOST', 'localhost');
 define('USER', 'root');
 define('PASS', '');
-define('DB', 'hotel');
+define('DB', 'test');
 
 session_start();
 

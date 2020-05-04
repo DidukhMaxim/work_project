@@ -1,6 +1,6 @@
 <header><?php
 include 'db_config.php';
-echo "<a href = ".dirname(index.php).">На главную</a><br>";
+echo "<a href = ".dirname("index.php").">На главную</a><br>";
 
 
 if ( isset($_SESSION['logged_user']) ) {

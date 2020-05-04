@@ -3,7 +3,7 @@ include 'header.php';
 function get_com()
 {
 	$connect = mysqli_connect(HOST,USER,PASS,DB) or die('Нехочет');
-	$sql_request = "SELECT id,comment,parent_id FROM `comments";
+	$sql_request = "SELECT id,comment,parent_id,user FROM `comments";
 	$query = mysqli_query($connect,$sql_request);
 	$arr_com = array();
 	if (mysqli_num_rows($query) != 0) {
@@ -30,12 +30,13 @@ function view_com($arr,$parent_id = 0) {
 	 for($i = 0; $i < count($arr[$parent_id]);$i++) {
 
 	  echo "
-	  <li>
-	  		<div>{$arr[$parent_id][$i]['comment']}</div>
+	  <li><div>Комментарий от {$arr[$parent_id][$i]['user']}:</div>
+	  		<strong><div>{$arr[$parent_id][$i]['comment']}</div></strong>
 	  		<div>
 				<form action = 'add_comments.php' method = 'post'>
 					<input type='text' name='text_add'>
-					<input type='submit' name='clic{$arr[$parent_id][$i]['id']}' value='{$arr[$parent_id][$i]['id']}'>
+					<input type='submit' name='add{$arr[$parent_id][$i]['id']}' value='ADD_{$arr[$parent_id][$i]['id']}'>
+					<input type='submit' name='delete{$arr[$parent_id][$i]['id']}' value='DELETE_{$arr[$parent_id][$i]['id']}'>
 				</form>
 			</div>
 	  </li>";

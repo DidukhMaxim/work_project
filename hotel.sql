@@ -31,6 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `comments` (
   `id` int(11) UNSIGNED NOT NULL,
   `comment` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `parent_id` int(191) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
